@@ -1,0 +1,186 @@
+﻿@page
+@model Importer.WApp.Pages.Catalogs.Pokemons.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Catálogo de Pokemons</h1>
+<form method="post" enctype="multipart/form-data" asp-route-searchBy="Pokemons">
+    <input type="text" asp-for="SearchCatalog" placeholder="Pesquisar no Catálogo">
+<table id="catalogTable"  class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].HP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].Attack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].SpeedAttack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].Defense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].SpeedDefense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pokemons[0].Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Pokemons) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeedAttack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Defense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeedDefense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</form>
+
+<h1>Meus Pokemons</h1>
+<form method="post" enctype="multipart/form-data" asp-route-searchBy="MyPokemons">
+    <input type="text" asp-for="SearchCatalog" placeholder="Pesquisar em Meus Pokemons">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Pokemon.HP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Pokemon.Attack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Pokemon.SpeedAttack)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MyPokemons)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pokemon.HP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pokemon.Attack)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pokemon.SpeedAttack)
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</form>
+
+<h1>Not Matches</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyPokemons[0].Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MatchPokemons)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Sincronizar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

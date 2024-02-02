@@ -1,0 +1,46 @@
+﻿@page
+@model Importer.WApp.Pages.Catalogs.Films.IndexModel
+
+@{
+    ViewData["Title"] = "Meus Filmes";
+}
+
+<h1>Meus Filmes</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="text" name="searchTerm" placeholder="Pesquisar meus Filmes">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].TimesWatched)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].UserId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Film) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimesWatched)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</form>

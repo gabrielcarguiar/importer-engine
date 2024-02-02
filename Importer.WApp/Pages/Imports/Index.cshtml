@@ -1,0 +1,59 @@
+﻿@page
+@model Importer.WApp.Pages.Imports.Films.ImportsModel
+
+@{
+    ViewData["Title"] = "Histórico de Importações";
+}
+
+<h1>Histórico de Importações</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Imports[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imports[0].FileName)
+            </th>
+            <th>
+                @Html.DisplayName("Data da Importação")
+            </th>
+            <th>
+                @Html.DisplayName("Data do Processamento")
+            </th>
+            <th>
+                @Html.DisplayName("Processado")
+            </th>
+            <th>
+                @Html.DisplayName("Ações")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Imports) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImportedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProcessedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSuccessful)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Reprocessar</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
